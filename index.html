@@ -639,7 +639,35 @@
       .case-card.reverse .case-media { order: 1; }
       .exp-grid { grid-template-columns: 1fr; }
       .floating-sticker { display: none; }
-    }
+
+      /* Mobile Nav Fix: Keeps "Let's Talk ↗" on a single line */
+      nav {
+        padding: 0.5rem 1rem;
+      }
+      .logo {
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+      nav .btn-cobalt {
+        padding: 0.5rem 1rem;
+        font-size: 0.82rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* Mobile Buttons Fix: Gives clean vertical breathing room */
+      .hero-actions, .cta-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem !important;
+      }
+      .hero-actions a, .cta-actions a {
+        width: 100%;
+        max-width: 290px;
+        justify-content: center;
+        margin: 0 !important;
+      }
   </style>
 </head>
 <body>
