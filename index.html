@@ -976,92 +976,123 @@
 
   <!-- Parallax Physics & Modal Scripts -->
 <script>
-    const sticker1 = document.getElementById('sticker1');
-    const sticker2 = document.getElementById('sticker2');
-    const settlableElements = document.querySelectorAll('.case-card, .bio-module, .timeline-card, .cta-card');
-    const polaroid = document.querySelector('.polaroid-card');
+    // 1. Inject Elegant "Slide From Right & Text Reaction" Animations
+    const customStyle = document.createElement('style');
+    customStyle.innerHTML = `
+      /* Ensure no horizontal scrollbar jank */
+      body, .case-studies-section, .container {
+        overflow-x: hidden !important;
+      }
 
-    // 1. Prepare elements: remove any transition delays so they follow your finger instantly
-    settlableElements.forEach(el => {
-      el.style.willChange = 'transform, opacity';
-      el.style.transformOrigin = 'center center';
-      el.style.transition = 'none'; 
+      /* Base Initial State: Shifted to the right and soft fade */
+      .case-card, .bio-module, .timeline-card, .cta-card {
+        opacity: 0;
+        transform: translateX(65px) scale(0.98);
+        transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform, opacity;
+      }
+
+      /* Card Settles into Place */
+      .case-card.is-settled, 
+      .bio-module.is-settled, 
+      .timeline-card.is-settled, 
+      .cta-card.is-settled {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      /* Media Box ("Bigger Card") Glides in with Subtle Depth */
+      .case-card .case-media {
+        opacity: 0;
+        transform: translateX(45px) scale(0.96);
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+                    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+        will-change: transform, opacity;
+      }
+      .case-card.is-settled .case-media {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      /* Cascading Text Reactions inside the Card */
+      .case-card .case-number {
+        opacity: 0;
+        transform: translateX(35px);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+      }
+      .case-card .case-meta {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.24s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.24s;
+      }
+      .case-card .case-title {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.30s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.30s;
+      }
+      .case-card .case-desc {
+        opacity: 0;
+        transform: translateX(25px);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s;
+      }
+      .case-card .btn-cobalt {
+        opacity: 0;
+        transform: translateX(20px) scale(0.96);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.42s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.42s;
+      }
+
+      /* Trigger all text to settle into place */
+      .case-card.is-settled .case-number,
+      .case-card.is-settled .case-meta,
+      .case-card.is-settled .case-title,
+      .case-card.is-settled .case-desc,
+      .case-card.is-settled .btn-cobalt {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    `;
+    document.head.appendChild(customStyle);
+
+    // 2. High-Performance Intersection Observer for the Entrance
+    const cardsToSettle = document.querySelectorAll('.case-card, .bio-module, .timeline-card, .cta-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-settled');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
     });
 
-    // 2. Real-Time Scroll Settling Engine (Physical Scroll Tracking)
-    function updateScrollSettling() {
-      const windowHeight = window.innerHeight;
+    cardsToSettle.forEach(card => observer.observe(card));
+
+    // 3. Floating Sticker Drift on Scroll
+    const sticker1 = document.getElementById('sticker1');
+    const sticker2 = document.getElementById('sticker2');
+    window.addEventListener('scroll', () => {
       const scrollY = window.pageYOffset;
-
-      // Background Grid Drift
       document.body.style.backgroundPositionY = `${scrollY * 0.25}px`;
-
-      // Floating Stickers Parallax
       if (sticker1) sticker1.style.transform = `translateY(${scrollY * 0.12}px) rotate(-10deg)`;
       if (sticker2) sticker2.style.transform = `translateY(${scrollY * -0.08}px) rotate(8deg)`;
-
-      // Elements physically rise, expand, and settle with your scroll
-      const enterPoint = windowHeight * 0.95;  // Starts rising when near bottom
-      const settlePoint = windowHeight * 0.35; // Completely locked into place
-
-      settlableElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-
-        // Calculate progress: 0.0 (entering) to 1.0 (settled)
-        let progress = (enterPoint - rect.top) / (enterPoint - settlePoint);
-        progress = Math.max(0, Math.min(1, progress));
-
-        // Smooth cubic easing curve
-        const ease = progress * progress * (3 - 2 * progress);
-
-        // Rises 45px up, expands from 0.94 to 1.0, fades from 0.25 to 1.0
-        const translateY = (1 - ease) * 45;
-        const scale = 0.94 + (ease * 0.06);
-        const opacity = 0.25 + (ease * 0.75);
-
-        el.style.transform = `translateY(${translateY.toFixed(1)}px) scale(${scale.toFixed(3)})`;
-        el.style.opacity = opacity.toFixed(2);
-      });
-
-      // Polaroid Card Settles and Straightens on scroll
-      if (polaroid) {
-        const pRect = polaroid.getBoundingClientRect();
-        if (pRect.top < windowHeight && pRect.bottom > 0) {
-          let pProgress = (enterPoint - pRect.top) / (enterPoint - settlePoint);
-          pProgress = Math.max(0, Math.min(1, pProgress));
-          const pAngle = 7 - (pProgress * 4); // Straightens from 7° to 3°
-          polaroid.style.transform = `rotate(${pAngle.toFixed(1)}deg)`;
-        }
-      }
-    }
-
-    // 60fps RequestAnimationFrame Loop
-    let isTicking = false;
-    window.addEventListener('scroll', () => {
-      if (!isTicking) {
-        window.requestAnimationFrame(() => {
-          updateScrollSettling();
-          isTicking = false;
-        });
-        isTicking = true;
-      }
     }, { passive: true });
 
-    // Initial calculation on load & screen resize
-    window.addEventListener('resize', updateScrollSettling);
-    window.addEventListener('DOMContentLoaded', updateScrollSettling);
-    updateScrollSettling();
-
-    // Mouse Parallax for Laptops
+    // 4. Mouse Parallax for Laptops
     window.addEventListener('mousemove', e => {
       const mouseX = (e.clientX / window.innerWidth) - 0.5;
       const mouseY = (e.clientY / window.innerHeight) - 0.5;
-
       if (sticker1) sticker1.style.transform = `translate(${mouseX * 35}px, ${mouseY * 35}px) rotate(-10deg)`;
       if (sticker2) sticker2.style.transform = `translate(${mouseX * -45}px, ${mouseY * -45}px) rotate(8deg)`;
     });
 
-    // Modal Details Logic
+    // 5. Modal Details Logic
     const modal = document.getElementById('projectModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalClient = document.getElementById('modalClient');
