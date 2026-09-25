@@ -976,10 +976,11 @@
 
   <!-- Parallax Physics & Modal Scripts -->
   <script>
-    // 1. Subtle Mouse Parallax on Floating Stickers
+    // 1. References to Floating Stickers
     const sticker1 = document.getElementById('sticker1');
     const sticker2 = document.getElementById('sticker2');
 
+    // 2. Mouse Parallax (Laptops / Desktops)
     window.addEventListener('mousemove', e => {
       const mouseX = (e.clientX / window.innerWidth) - 0.5;
       const mouseY = (e.clientY / window.innerHeight) - 0.5;
@@ -988,7 +989,67 @@
       if (sticker2) sticker2.style.transform = `translate(${mouseX * -45}px, ${mouseY * -45}px) rotate(10deg)`;
     });
 
-    // 2. Modal Logic
+    // 3. Scroll Parallax Engine (Phones & Laptops)
+    let isTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!isTicking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset;
+
+          // Background Grid Drift
+          document.body.style.backgroundPositionY = `${scrollY * 0.25}px`;
+
+          // Inner Card Media Depth Parallax
+          document.querySelectorAll('.case-media-box').forEach(box => {
+            const rect = box.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const depth = (rect.top - window.innerHeight / 2) * 0.07;
+              box.style.transform = `translateY(${depth.toFixed(1)}px)`;
+            }
+          });
+
+          // Polaroid Tilt Parallax
+          const polaroid = document.querySelector('.polaroid-card');
+          if (polaroid) {
+            const pRect = polaroid.getBoundingClientRect();
+            if (pRect.top < window.innerHeight && pRect.bottom > 0) {
+              const pOffset = (pRect.top - window.innerHeight / 2) * 0.05;
+              polaroid.style.transform = `rotate(${(3 + pOffset * 0.05).toFixed(1)}deg) translateY(${pOffset.toFixed(1)}px)`;
+            }
+          }
+
+          isTicking = false;
+        });
+        isTicking = true;
+      }
+    }, { passive: true });
+
+    // 4. Mobile & Desktop Scroll Reveal (Cards glide in on scroll)
+    const elementsToReveal = document.querySelectorAll('.case-card, .timeline-card, .bio-module, .cta-card');
+    elementsToReveal.forEach(el => el.classList.add('reveal-on-scroll'));
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elementsToReveal.forEach(el => scrollObserver.observe(el));
+
+    // 5. Mobile Gyroscope / Phone Tilt
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', (e) => {
+        if (e.gamma !== null && sticker1 && sticker2) {
+          const tiltX = Math.min(Math.max(e.gamma, -25), 25);
+          sticker1.style.transform = `translateX(${tiltX * 0.7}px) rotate(-10deg)`;
+          sticker2.style.transform = `translateX(${tiltX * -0.7}px) rotate(8deg)`;
+        }
+      }, { passive: true });
+    }
+
+    // 6. Case Study Detail Modal
     const modal = document.getElementById('projectModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalClient = document.getElementById('modalClient');
