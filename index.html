@@ -633,8 +633,16 @@
 
     @media (max-width: 860px) {
       .nav-links { display: none; }
+      /* Maximizes screen width on mobile */
+      .container {
+        width: 95%;
+        padding: 0 0.5rem;
+      }
+
+      /* Reduced side padding on the Bio/About Card (from 40px down to 20px) */
       .bio-module { 
         grid-template-columns: 1fr; 
+        padding: 2rem 1.25rem; 
       }
       .bio-right { 
         order: -1; 
@@ -646,15 +654,11 @@
         max-width: 260px; 
         width: 100%; 
       }
-      .case-card, .case-card.reverse { grid-template-columns: 1fr; }
-      .case-card.reverse .case-content { order: 2; }
-      .case-card.reverse .case-media { order: 1; }
-      .exp-grid { grid-template-columns: 1fr; }
-      .floating-sticker { display: none; }
 
-      /* Mobile Nav Fix: Keeps "Let's Talk ↗" on a single line */
-      nav {
-        padding: 0.5rem 1rem;
+      /* Reduced side padding on all Case Study Cards (from 40px down to 20px) */
+      .case-card, .case-card.reverse { 
+        grid-template-columns: 1fr; 
+        padding: 1.75rem 1.25rem; 
       }
       .logo {
         font-size: 1rem;
