@@ -642,7 +642,17 @@
       /* Reduced side padding on the Bio/About Card (from 40px down to 20px) */
       .bio-module { 
         grid-template-columns: 1fr; 
-        padding: 2rem 1.25rem; 
+      }
+      /* Shows photo card first on mobile & centers it nicely */
+      .bio-right { 
+        order: -1; 
+        display: flex; 
+        justify-content: center; 
+        margin-bottom: 1.5rem; 
+      }
+      .polaroid-card { 
+        max-width: 260px; 
+        width: 100%; 
       }
       .bio-right { 
         order: -1; 
