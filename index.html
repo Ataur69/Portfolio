@@ -252,7 +252,7 @@
       flex-wrap: wrap;
     }
 
-    /* Royal Blue Curled-Corner Sticker */
+   /* Royal Blue Sticker (Dynamic 50% Peel) */
     .peel-sticker {
       position: relative;
       display: inline-flex;
@@ -270,30 +270,39 @@
       white-space: nowrap;
       transform: rotate(var(--current-tilt, 0deg));
       transform-style: preserve-3d;
-      perspective: 700px;
+      perspective: 800px;
       box-shadow: 0 8px 18px rgba(16, 83, 243, 0.32), 0 2px 6px rgba(0, 0, 0, 0.12);
       will-change: transform, clip-path, box-shadow;
       
+      /* Dynamic Diagonal Notch expanding up to 50% */
       clip-path: polygon(
         0 0,
-        calc(100% - var(--peel, 18px)) 0,
-        100% var(--peel, 18px),
+        calc(100% - var(--peel-x, 20px)) 0,
+        100% var(--peel-y, 20px),
         100% 100%,
         0 100%
       );
-      --peel: 18px;
+      --peel-x: 20px;
+      --peel-y: 20px;
     }
 
-    /* The Curled Dog-Ear Corner */
+    /* The 50% Curled Flap with 3D Paper Gradient */
     .peel-corner {
       position: absolute;
       top: 0;
       right: 0;
-      width: var(--peel, 18px);
-      height: var(--peel, 18px);
-      background: linear-gradient(135deg, transparent 50%, #9fc4ff 50%, #6fa4ff 100%);
-      border-bottom-left-radius: 5px;
-      box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.3);
+      width: var(--peel-x, 20px);
+      height: var(--peel-y, 20px);
+      background: linear-gradient(
+        135deg, 
+        transparent 48%, 
+        rgba(255, 255, 255, 0.8) 49%, 
+        #9fc4ff 52%, 
+        #70a5ff 78%,
+        #4f8df7 100%
+      );
+      border-bottom-left-radius: 8px;
+      box-shadow: -6px 6px 16px rgba(0, 0, 0, 0.32);
       pointer-events: none;
       transition: width 0.08s ease-out, height 0.08s ease-out;
     }
@@ -305,7 +314,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.75) 48%, rgba(0,0,0,0.2) 52%, transparent 54%);
+      background: linear-gradient(135deg, rgba(255,255,255,0.7) 48%, rgba(0,0,0,0.22) 52%, transparent 54%);
     }
 
     /* About / Bio Module */
