@@ -169,7 +169,105 @@
     /* Hero Section */
     .hero {
       /* Infinite Creative Ticker Ribbon */
-    .marquee-strip {
+    /* Tactile Masking Tape Strip */
+    .sticker-strip-wrap {
+      margin: 3.5rem 0 0;
+      position: relative;
+      overflow: hidden;
+      padding: 1.5rem 0 2rem;
+    }
+
+    .masking-tape-bar {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      border-top: 2px dashed #cbd5e1;
+      border-bottom: 2px dashed #cbd5e1;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      padding: 1rem 0;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .stickers-container {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      padding: 0 1.5rem;
+      flex-wrap: nowrap;
+    }
+
+    /* Individual Vinyl Stickers */
+    .vinyl-sticker {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #111827;
+      background: #ffffff;
+      border: 2.5px solid #111827;
+      padding: 0.55rem 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      opacity: 0;
+      transform: scale(0.5) translateY(-30px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    /* Slap Down Animation */
+    .vinyl-sticker.slapped {
+      opacity: 1;
+      animation: slapImpact 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes slapImpact {
+      0% {
+        opacity: 0;
+        transform: scale(1.4) translateY(-35px) rotate(0deg);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(0.92) translateY(3px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(var(--final-tilt, 0deg));
+      }
+    }
+
+    /* Tactile Wiggle on Hover / Tap */
+    .vinyl-sticker:hover,
+    .vinyl-sticker:active {
+      transform: scale(1.08) rotate(0deg) !important;
+      box-shadow: 0 8px 20px rgba(22, 82, 240, 0.25);
+      border-color: var(--cobalt-blue);
+      color: var(--cobalt-blue);
+    }
+
+    /* Animated Vector Hand Actor */
+    .hand-actor {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 75px;
+      height: 95px;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transform: translate3d(0, 30px, 0);
+      transition: opacity 0.3s ease, left 0.45s cubic-bezier(0.25, 1, 0.5, 1), top 0.2s ease;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+    }
+
+    .hand-actor.pressing {
+      transform: translate3d(0, 10px, 0) scale(0.92);
+    } {
       overflow: hidden;
       white-space: nowrap;
       margin: 3.5rem -5vw 0;
@@ -780,23 +878,39 @@
       </div>
 
       <!-- Infinite Kinetic Creative Ticker (Fills the empty space with live motion) -->
-      <div class="marquee-strip">
-        <div class="marquee-track">
-          <span>✦ MOTION DESIGN</span>
-          <span>✦ 3D VISUALIZATION</span>
-          <span>✦ BRAND IDENTITY</span>
-          <span>✦ DOOH CAMPAIGNS</span>
-          <span>✦ UI MOTION</span>
-          <span>✦ ART DIRECTION</span>
-          <span>✦ MOTION DESIGN</span>
-          <span>✦ 3D VISUALIZATION</span>
-          <span>✦ BRAND IDENTITY</span>
-          <span>✦ DOOH CAMPAIGNS</span>
-          <span>✦ UI MOTION</span>
-          <span>✦ ART DIRECTION</span>
+      <!-- Tactile Masking Tape Strip with Animated Vector Hand -->
+      <div class="sticker-strip-wrap" id="stickerStrip">
+        <div class="masking-tape-bar">
+          
+          <!-- Animated Theme-Matched Vector Hand -->
+          <div class="hand-actor" id="handActor">
+            <svg viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cobalt Blue Sleeve with Yellow Accent Cuff -->
+              <path d="M18 96 L82 96 L88 130 L12 130 Z" fill="#1652f0" stroke="#111827" stroke-width="3" stroke-linejoin="round"/>
+              <line x1="18" y1="96" x2="82" y2="96" stroke="#ffd600" stroke-width="4.5" stroke-linecap="round"/>
+              
+              <!-- Hand & Pressing Finger -->
+              <path d="M26 96 C26 70, 30 55, 43 48 C43 36, 48 18, 54 13 C59 8, 65 9, 67 15 C68 22, 67 36, 67 44 C70 40, 76 40, 78 45 C80 50, 78 58, 77 62 C81 59, 85 60, 86 65 C87 71, 83 79, 80 82 C76 88, 70 96, 58 96 Z" 
+                    fill="#ffffff" stroke="#111827" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+              
+              <!-- Clean Finger Creases -->
+              <path d="M54 32 L54 48" stroke="#111827" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M63 38 L63 54" stroke="#111827" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M73 48 L73 63" stroke="#111827" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- The Vinyl Discipline Stickers -->
+          <div class="stickers-container">
+            <div class="vinyl-sticker sticker-item" data-tilt="-2.5">✦ MOTION DESIGN</div>
+            <div class="vinyl-sticker sticker-item" data-tilt="3">✦ 3D VISUALIZATION</div>
+            <div class="vinyl-sticker sticker-item" data-tilt="-1.5">✦ BRAND IDENTITY</div>
+            <div class="vinyl-sticker sticker-item" data-tilt="2">✦ DOOH CAMPAIGNS</div>
+            <div class="vinyl-sticker sticker-item" data-tilt="-3">✦ ART DIRECTION</div>
+          </div>
+
         </div>
       </div>
-    </div>
   </section>
 
   <!-- About / Bio Split Module with Polaroid -->
@@ -1232,7 +1346,49 @@
 
     function closeModal(event) {
       modal.classList.remove('active');
+    }// Animated Hand Attaching Stickers One by One
+    function playHandStickerSequence() {
+      const hand = document.getElementById('handActor');
+      const stickers = document.querySelectorAll('.sticker-item');
+      if (!hand || stickers.length === 0) return;
+
+      // Make hand visible
+      hand.style.opacity = '1';
+
+      stickers.forEach((sticker, index) => {
+        const tilt = sticker.getAttribute('data-tilt') || '0';
+        sticker.style.setProperty('--final-tilt', `${tilt}deg`);
+
+        setTimeout(() => {
+          // Calculate sticker center relative to tape bar
+          const stickerRect = sticker.getBoundingClientRect();
+          const barRect = sticker.parentElement.getBoundingClientRect();
+          const targetLeft = (stickerRect.left - barRect.left) + (stickerRect.width / 2) - 35;
+
+          // Move hand over the sticker
+          hand.style.left = `${Math.max(10, targetLeft)}px`;
+          hand.classList.remove('pressing');
+
+          // Hand presses down (Slaps the sticker down)
+          setTimeout(() => {
+            hand.classList.add('pressing');
+            sticker.classList.add('slapped');
+          }, 200);
+
+        }, index * 600);
+      });
+
+      // Hand slides away after placing all stickers
+      setTimeout(() => {
+        hand.style.opacity = '0';
+        hand.style.top = '60px';
+      }, stickers.length * 600 + 400);
     }
+
+    // Trigger on page load
+    window.addEventListener('load', () => {
+      setTimeout(playHandStickerSequence, 400);
+    });
   </script>
 </body>
 </html>
