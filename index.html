@@ -1103,6 +1103,9 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-settled');
+        } else {
+          // Resets the card off-screen so it animates again every time you scroll past
+          entry.target.classList.remove('is-settled');
         }
       });
     }, {
