@@ -168,14 +168,12 @@
 
     /* Hero Section */
     .hero {
-      /* Infinite Creative Ticker Ribbon */
-    /* Tactile Masking Tape Strip */
-    /* Clean Solid White Running Strip */
+      /* Clean Solid White Strip (Reference 1) */
     .marquee-strip {
       overflow: hidden;
       white-space: nowrap;
       margin: 3.5rem -5vw 0;
-      padding: 1.25rem 0;
+      padding: 1.5rem 0 1.8rem;
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
       background: #ffffff;
@@ -183,26 +181,85 @@
       position: relative;
     }
 
-    .marquee-track {
-      display: inline-flex;
-      gap: 1.5rem;
-      animation: tickerRun 28s linear infinite;
-      align-items: center;
+    .marquee-strip:hover .marquee-track {
+      animation-play-state: paused; /* Pauses on hover so you can interact with stickers */
     }
 
-    /* Authentic Blue Sticky Page Marker / Index Tab (Reference 2) */
-    .sticky-tab {
+    .marquee-track {
+      display: inline-flex;
+      gap: 1.8rem;
+      animation: tickerRun 30s linear infinite;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    /* Royal Blue Curled-Corner Sticker (Reference 2) */
+    .peel-sticker {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      position: relative;
-      /* Translucent frosted adhesive band on the left + solid electric cobalt blue on the right */
-      background: linear-gradient(
-        90deg,
-        rgba(22, 82, 240, 0.4) 0%,
-        rgba(22, 82, 240, 0.4) 24%,
-        #1652f0 24%,
-        #1652f0 100%
+      background: #1053f3;
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1.6rem 0.75rem 1.4rem;
+      border-radius: 8px;
+      user-select: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transform: rotate(var(--current-tilt, 0deg));
+      transform-style: preserve-3d;
+      perspective: 800px;
+      
+      /* Realistic physical shadow on the white strip */
+      box-shadow: 0 8px 18px rgba(16, 83, 243, 0.32), 0 2px 6px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      
+      /* Diagonal Notch at Top-Right for the 3D Corner Peel */
+      clip-path: polygon(
+        0 0,
+        calc(100% - var(--peel, 20px)) 0,
+        100% var(--peel, 20px),
+        100% 100%,
+        0 100%
       );
+      --peel: 20px;
+    }
+
+    /* The Curled Dog-Ear Flap */
+    .peel-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: var(--peel, 20px);
+      height: var(--peel, 20px);
+      /* Lighter blue gradient for underside of sticker paper */
+      background: linear-gradient(135deg, transparent 50%, #9fc4ff 50%, #70a5ff 100%);
+      border-bottom-left-radius: 5px;
+      /* Shadow cast by the curled flap */
+      box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      transition: width 0.18s ease-out, height 0.18s ease-out;
+    }
+
+    /* Crease Highlight on the Fold */
+    .peel-corner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.7) 48%, rgba(0,0,0,0.2) 52%, transparent 54%);
+    }
+
+    @keyframes tickerRun {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
       color: #ffffff;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
@@ -901,21 +958,61 @@
       <!-- Infinite Kinetic Creative Ticker (Fills the empty space with live motion) -->
       <!-- Tactile Masking Tape Strip with Animated Vector Hand -->
   <!-- Clean White Strip with Blue Sticky Index Tabs -->
+      <!-- Continuous White Strip with Curled-Corner Royal Blue Stickers -->
       <div class="marquee-strip">
         <div class="marquee-track">
-          <div class="sticky-tab">✦ MOTION DESIGN</div>
-          <div class="sticky-tab">✦ 3D VISUALIZATION</div>
-          <div class="sticky-tab">✦ BRAND IDENTITY</div>
-          <div class="sticky-tab">✦ DOOH CAMPAIGNS</div>
-          <div class="sticky-tab">✦ UI MOTION</div>
-          <div class="sticky-tab">✦ ART DIRECTION</div>
-          <!-- Duplicate set for seamless continuous glide -->
-          <div class="sticky-tab">✦ MOTION DESIGN</div>
-          <div class="sticky-tab">✦ 3D VISUALIZATION</div>
-          <div class="sticky-tab">✦ BRAND IDENTITY</div>
-          <div class="sticky-tab">✦ DOOH CAMPAIGNS</div>
-          <div class="sticky-tab">✦ UI MOTION</div>
-          <div class="sticky-tab">✦ ART DIRECTION</div>
+          
+          <div class="peel-sticker" data-tilt="-2.5">
+            <span>✦ MOTION DESIGN</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="3">
+            <span>✦ 3D VISUALIZATION</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="-1.5">
+            <span>✦ BRAND IDENTITY</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="2">
+            <span>✦ DOOH CAMPAIGNS</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="-2.5">
+            <span>✦ UI MOTION</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="2.5">
+            <span>✦ ART DIRECTION</span>
+            <div class="peel-corner"></div>
+          </div>
+
+          <!-- Duplicate Set for Seamless Continuous Loop -->
+          <div class="peel-sticker" data-tilt="-2.5">
+            <span>✦ MOTION DESIGN</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="3">
+            <span>✦ 3D VISUALIZATION</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="-1.5">
+            <span>✦ BRAND IDENTITY</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="2">
+            <span>✦ DOOH CAMPAIGNS</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="-2.5">
+            <span>✦ UI MOTION</span>
+            <div class="peel-corner"></div>
+          </div>
+          <div class="peel-sticker" data-tilt="2.5">
+            <span>✦ ART DIRECTION</span>
+            <div class="peel-corner"></div>
+          </div>
+
         </div>
       </div>
   </section>
@@ -1395,6 +1492,44 @@
     // Trigger on page load
     window.addEventListener('load', () => {
       setTimeout(playHandStickerSequence, 400);
+    });
+  // Real-Time Cursor Follow & Dynamic Corner Peel on Stickers
+    document.querySelectorAll('.peel-sticker').forEach(sticker => {
+      const baseTilt = parseFloat(sticker.getAttribute('data-tilt') || '0');
+      sticker.style.setProperty('--current-tilt', `${baseTilt}deg`);
+
+      sticker.addEventListener('mousemove', e => {
+        const rect = sticker.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // 1. 3D Tilt following cursor position
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const tiltX = ((y - centerY) / centerY) * -12;
+        const tiltY = ((x - centerX) / centerX) * 12;
+
+        // 2. Measure distance from cursor to top-right peel corner
+        const distToCornerX = rect.width - x;
+        const distToCornerY = y;
+        const dist = Math.sqrt(distToCornerX * distToCornerX + distToCornerY * distToCornerY);
+        
+        // As cursor gets closer to corner, the peel curls back from 20px up to 36px!
+        const maxDist = rect.width * 0.75;
+        const peelFactor = 1 - Math.min(1, dist / maxDist);
+        const dynamicPeel = 20 + (peelFactor * 16);
+
+        sticker.style.setProperty('--peel', `${dynamicPeel.toFixed(1)}px`);
+        sticker.style.transform = `perspective(800px) rotateX(${tiltX.toFixed(1)}deg) rotateY(${tiltY.toFixed(1)}deg) rotate(${baseTilt}deg) translateY(-6px) scale(1.04)`;
+        sticker.style.boxShadow = `0 14px 26px rgba(16, 83, 243, 0.42), 0 4px 10px rgba(0, 0, 0, 0.15)`;
+      });
+
+      // Reset to resting peel angle when cursor leaves
+      sticker.addEventListener('mouseleave', () => {
+        sticker.style.setProperty('--peel', '20px');
+        sticker.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) rotate(${baseTilt}deg) translateY(0) scale(1)`;
+        sticker.style.boxShadow = `0 8px 18px rgba(16, 83, 243, 0.32), 0 2px 6px rgba(0, 0, 0, 0.12)`;
+      });
     });
   </script>
 </body>
