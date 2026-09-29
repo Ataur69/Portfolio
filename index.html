@@ -633,26 +633,16 @@
 
     @media (max-width: 860px) {
       .nav-links { display: none; }
-      /* Maximizes screen width on mobile */
+      
       .container {
         width: 95%;
         padding: 0 0.5rem;
       }
 
-      /* Reduced side padding on the Bio/About Card (from 40px down to 20px) */
+      /* Bio / About Section Mobile */
       .bio-module { 
         grid-template-columns: 1fr; 
-      }
-      /* Shows photo card first on mobile & centers it nicely */
-      .bio-right { 
-        order: -1; 
-        display: flex; 
-        justify-content: center; 
-        margin-bottom: 1.5rem; 
-      }
-      .polaroid-card { 
-        max-width: 260px; 
-        width: 100%; 
+        padding: 2rem 1.25rem; 
       }
       .bio-right { 
         order: -1; 
@@ -663,14 +653,32 @@
       .polaroid-card { 
         max-width: 320px; 
         width: 100%; 
-        transform: rotate(1.5deg); /* Subtle tilt so it fits wide screens cleanly */
+        transform: rotate(1.5deg);
         margin-bottom: 2rem;
       }
 
-      /* Reduced side padding on all Case Study Cards (from 40px down to 20px) */
+      /* Case Studies Section Mobile */
       .case-card, .case-card.reverse { 
         grid-template-columns: 1fr; 
         padding: 1.75rem 1.25rem; 
+      }
+      .case-card.reverse .case-content { order: 2; }
+      .case-card.reverse .case-media { order: 1; }
+
+      /* Stacks Career Milestones & Creative Stack in a Single Column */
+      .exp-grid { 
+        grid-template-columns: 1fr !important; 
+        gap: 2.5rem !important; 
+      }
+      /* Full-width Milestone Cards */
+      .timeline-card {
+        width: 100% !important;
+        padding: 1.5rem 1.25rem !important;
+      }
+
+      /* Mobile Nav Fix */
+      nav {
+        padding: 0.5rem 1rem;
       }
       .logo {
         font-size: 1rem;
@@ -683,7 +691,7 @@
         flex-shrink: 0;
       }
 
-      /* Mobile Buttons Fix: Gives clean vertical breathing room */
+      /* Mobile Action Buttons */
       .hero-actions, .cta-actions {
         display: flex;
         flex-direction: column;
@@ -696,6 +704,7 @@
         justify-content: center;
         margin: 0 !important;
       }
+    }
   </style>
 </head>
 <body>
