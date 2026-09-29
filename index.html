@@ -1014,114 +1014,132 @@
 
   <!-- Parallax Physics & Modal Scripts -->
 <script>
-    // 1. Inject Elegant "Slide From Right & Text Reaction" Animations
+    // 1. Directional Slide & Cascade Styles (Instant Reset on Exit, Staggered Settle on Arrival)
     const customStyle = document.createElement('style');
     customStyle.innerHTML = `
-      /* Ensure no horizontal scrollbar jank */
       body, .case-studies-section, .container {
         overflow-x: hidden !important;
       }
 
-      /* Base Initial State: Shifted to the right and soft fade */
+      /* Card Armed State (Instant Silent Reset when Leaving) */
       .case-card, .bio-module, .timeline-card, .cta-card {
         opacity: 0;
         transform: translateX(65px) scale(0.98);
-        transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-                    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: transform 0.25s ease-out, opacity 0.25s ease-out;
         will-change: transform, opacity;
       }
 
-      /* Card Settles into Place */
+      /* Card Arrival State (Graceful Luxury Settle) */
       .case-card.is-settled, 
       .bio-module.is-settled, 
       .timeline-card.is-settled, 
       .cta-card.is-settled {
         opacity: 1;
         transform: translateX(0) scale(1);
+        transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      /* Media Box ("Bigger Card") Glides in with Subtle Depth */
+      /* Media Frame ("Bigger Card") */
       .case-card .case-media {
         opacity: 0;
         transform: translateX(45px) scale(0.96);
-        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
-                    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+        transition: transform 0.25s ease-out, opacity 0.25s ease-out;
         will-change: transform, opacity;
       }
       .case-card.is-settled .case-media {
         opacity: 1;
         transform: translateX(0) scale(1);
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+                    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
       }
 
-      /* Cascading Text Reactions inside the Card */
+      /* Cascading Elements: Fast Reset on Exit, Staggered Delay on Arrival */
       .case-card .case-number {
         opacity: 0;
         transform: translateX(35px);
-        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
-                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
+      .case-card.is-settled .case-number {
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.16s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.16s;
+      }
+
       .case-card .case-meta {
         opacity: 0;
         transform: translateX(30px);
-        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.24s,
-                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.24s;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
+      .case-card.is-settled .case-meta {
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s;
+      }
+
       .case-card .case-title {
         opacity: 0;
         transform: translateX(30px);
-        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.30s,
-                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.30s;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
+      .case-card.is-settled .case-title {
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+      }
+
       .case-card .case-desc {
         opacity: 0;
         transform: translateX(25px);
-        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s,
-                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.36s;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
+      .case-card.is-settled .case-desc {
+        opacity: 1;
+        transform: translateX(0);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.34s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.34s;
+      }
+
       .case-card .btn-cobalt {
         opacity: 0;
         transform: translateX(20px) scale(0.96);
-        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.42s,
-                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.42s;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
-
-      /* Trigger all text to settle into place */
-      .case-card.is-settled .case-number,
-      .case-card.is-settled .case-meta,
-      .case-card.is-settled .case-title,
-      .case-card.is-settled .case-desc,
       .case-card.is-settled .btn-cobalt {
         opacity: 1;
         transform: translateX(0) scale(1);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.40s,
+                    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.40s;
       }
     `;
     document.head.appendChild(customStyle);
 
-    // 2. High-Performance Intersection Observer for the Entrance
+    // 2. Focused Active-Band Observer (Re-arms instantly on short scrolls)
     const cardsToSettle = document.querySelectorAll('.case-card, .bio-module, .timeline-card, .cta-card');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-settled');
         } else {
-          // Resets the card off-screen so it animates again every time you scroll past
+          // Immediately reset whenever the card leaves the active view zone
           entry.target.classList.remove('is-settled');
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.12,
+      rootMargin: '-16% 0px -16% 0px'
     });
 
     cardsToSettle.forEach(card => observer.observe(card));
 
     // 3. Floating Sticker Drift on Scroll
-    const sticker1 = document.getElementById('sticker1');
     const sticker2 = document.getElementById('sticker2');
     window.addEventListener('scroll', () => {
       const scrollY = window.pageYOffset;
       document.body.style.backgroundPositionY = `${scrollY * 0.25}px`;
-      if (sticker1) sticker1.style.transform = `translateY(${scrollY * 0.12}px) rotate(-10deg)`;
       if (sticker2) sticker2.style.transform = `translateY(${scrollY * -0.08}px) rotate(8deg)`;
     }, { passive: true });
 
@@ -1129,7 +1147,6 @@
     window.addEventListener('mousemove', e => {
       const mouseX = (e.clientX / window.innerWidth) - 0.5;
       const mouseY = (e.clientY / window.innerHeight) - 0.5;
-      if (sticker1) sticker1.style.transform = `translate(${mouseX * 35}px, ${mouseY * 35}px) rotate(-10deg)`;
       if (sticker2) sticker2.style.transform = `translate(${mouseX * -45}px, ${mouseY * -45}px) rotate(8deg)`;
     });
 
