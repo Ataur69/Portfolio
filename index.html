@@ -240,6 +240,7 @@
     }
 
     /* About / Bio Module */
+    /* About / Bio Module (Always 100% Visible on Desktop & Mobile) */
     .bio-module {
       background: #ffffff;
       border: 1px solid var(--border-light);
@@ -251,6 +252,8 @@
       grid-template-columns: 1.3fr 0.9fr;
       gap: 3rem;
       align-items: center;
+      opacity: 1 !important;
+      transform: none !important;
     }
 
     .bio-left h2 {
@@ -1016,7 +1019,7 @@
         overflow-x: hidden !important;
       }
 
-      .case-card, .bio-module, .timeline-card, .cta-card {
+      .case-card, .timeline-card, .cta-card {
         opacity: 0;
         transform: translateX(65px) scale(0.98);
         transition: transform 0.25s ease-out, opacity 0.25s ease-out;
