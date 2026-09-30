@@ -78,6 +78,7 @@
   /* Apple iOS UI Frosted Navigation Bar */
     /* Apple Clear Water Glass Navigation Bar */
     /* Ultra-Clear Transparent Glass Navigation Bar */
+   /* Apple Liquid Refractive Glass Navigation Bar */
     header {
       position: sticky;
       top: 1rem;
@@ -87,12 +88,16 @@
 
     nav {
       position: relative;
-      /* 88% Transparent Clear Glass */
-      background: rgba(255, 255, 255, 0.12);
+      /* Clear liquid core: 95% transparent in center, subtly denser near edges */
+      background: radial-gradient(
+        ellipse at 50% 50%,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0.16) 100%
+      );
       
-      /* Crisp, subtle 5px blur (keeps whatever is behind it sharp and visible) */
-      backdrop-filter: blur(5px) saturate(140%);
-      -webkit-backdrop-filter: blur(5px) saturate(140%);
+      /* Light, crisp optical lens (keeps items clear, not blurry fog) */
+      backdrop-filter: blur(3.5px) saturate(150%);
+      -webkit-backdrop-filter: blur(3.5px) saturate(150%);
       
       border-radius: var(--radius-pill);
       padding: 0.65rem 1.6rem;
@@ -100,27 +105,52 @@
       justify-content: space-between;
       align-items: center;
       
-      /* Delicate hairline border and top glass rim */
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      /* Multi-Depth Liquid Meniscus: Bends light around the curved perimeter */
       box-shadow: 
-        0 4px 20px -2px rgba(0, 0, 0, 0.04),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
+        0 8px 32px -4px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 2px 2px 0 rgba(255, 255, 255, 0.95),        /* Sharp top specular ridge */
+        inset 0 0 14px 2px rgba(255, 255, 255, 0.5),       /* Refractive edge glow */
+        inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08),            /* Bottom meniscus shadow */
+        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.4);
+      
+      overflow: hidden;
     }
-    /* Water Surface Gloss Reflection */
+
+    /* Convex Liquid Lens (Curved Meniscus Refraction) */
     nav::before {
       content: '';
       position: absolute;
-      inset: 0;
+      inset: 1px;
       border-radius: inherit;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.3) 0%,
-        rgba(255, 255, 255, 0.02) 50%,
-        transparent 100%
+      background: radial-gradient(
+        ellipse at 50% 0%,
+        rgba(255, 255, 255, 0.35) 0%,
+        transparent 70%
       );
       pointer-events: none;
     }
 
+    /* Beveled Prism Perimeter: Bends and catches passing colors */
+    nav::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(255, 255, 255, 0.15) 35%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.25) 70%,
+        rgba(255, 255, 255, 0.75) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
     .logo {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.15rem;
