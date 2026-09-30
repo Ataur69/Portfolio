@@ -1098,7 +1098,7 @@
     document.head.appendChild(customStyle);
 
     // 2. Focused Active-Band Observer
-    const cardsToSettle = document.querySelectorAll('.case-card, .bio-module, .timeline-card, .cta-card');
+    const cardsToSettle = document.querySelectorAll('.case-card, .timeline-card, .cta-card');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
