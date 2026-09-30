@@ -74,6 +74,7 @@
     }
 
     /* Navigation Bar */
+    /* Apple Liquid Glass Navigation Bar */
     header {
       position: sticky;
       top: 1rem;
@@ -82,15 +83,48 @@
     }
 
     nav {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-light);
+      position: relative;
+      /* Translucent Liquid Glass Body */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.22) 100%);
+      
+      /* Optical Refraction: Blurs and intensely saturates anything scrolling underneath */
+      backdrop-filter: blur(28px) saturate(210%) contrast(105%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%) contrast(105%);
+      
       border-radius: var(--radius-pill);
       padding: 0.65rem 1.6rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: var(--shadow-sm);
+      
+      /* Glass Border */
+      border: 1px solid rgba(255, 255, 255, 0.45);
+
+      /* Apple Chromatic Aberration & Specular Rims (Reference Image) */
+      box-shadow: 
+        inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),        /* Top specular highlight */
+        inset 1px 0 2px 0 rgba(147, 197, 253, 0.35),          /* Left cyan refraction */
+        inset -1px 0 2px 0 rgba(192, 132, 252, 0.3),          /* Right violet refraction */
+        inset 0 -1.5px 2px 0 rgba(110, 231, 183, 0.35),       /* Bottom emerald refraction */
+        0 16px 36px -8px rgba(0, 0, 0, 0.08),                 /* Soft glass drop shadow */
+        0 0 1px 1px rgba(255, 255, 255, 0.2);
+      
+      overflow: hidden;
+    }
+
+    /* Convex Curved Specular Glare across the top half of the capsule */
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.08) 45%,
+        transparent 100%
+      );
+      pointer-events: none;
     }
 
     .logo {
