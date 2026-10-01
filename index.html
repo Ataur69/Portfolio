@@ -757,81 +757,41 @@
       }
 
       /* Open MARS Spotlight Mobile */
-      .mars-spotlight-section {
-        padding: 2.5rem 0 2rem;
-        margin-top: 2rem;
-      }
-      .mars-spec-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.25rem;
-      }
+      // Interactive MARS Brand Visual Switcher
+    function setMarsVisual(brand, btnEl) {
+      document.querySelectorAll('.m-pill-btn').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
 
-      /* Bio / About Card */
-      .bio-module { 
-        grid-template-columns: 1fr; 
-        padding: 2rem 1.25rem; 
-        margin: 2rem 0 3.5rem !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-      .bio-right { 
-        order: -1; 
-        display: flex; 
-        justify-content: center; 
-        margin-bottom: 1.5rem; 
-      }
-      .polaroid-card { 
-        max-width: 320px; 
-        width: 100%; 
-        transform: rotate(1.5deg);
-        margin-bottom: 2rem;
-      }
+      const canvas = document.getElementById('billboardCanvas');
+      const glow = document.getElementById('billboardGlow');
+      const tag = document.getElementById('screenTag');
+      const heading = document.getElementById('screenHeading');
+      const sub = document.getElementById('screenSubText');
 
-      /* Case Study Cards */
-      .case-card, .case-card.reverse { 
-        grid-template-columns: 1fr; 
-        padding: 1.75rem 1.25rem; 
-      }
-      .case-card.reverse .case-content { order: 2; }
-      .case-card.reverse .case-media { order: 1; }
-
-      /* Career Milestones & Creative Stack Stack Vertically */
-      .exp-grid { 
-        grid-template-columns: 1fr !important; 
-        gap: 2.5rem !important; 
-      }
-      .timeline-card {
-        width: 100% !important;
-        padding: 1.5rem 1.25rem !important;
-      }
-
-      /* Nav Button Single Line */
-      nav {
-        padding: 0.5rem 1rem;
-      }
-      .logo {
-        font-size: 1rem;
-        white-space: nowrap;
-      }
-      nav .btn-cobalt {
-        padding: 0.5rem 1rem;
-        font-size: 0.82rem;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
-
-      /* Hero & CTA Action Buttons */
-      .hero-actions, .cta-actions {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.85rem !important;
-      }
-      .hero-actions a, .cta-actions a {
-        width: 100%;
-        max-width: 290px;
-        justify-content: center;
-        margin: 0 !important;
+      if (brand === 'mms') {
+        canvas.style.background = 'radial-gradient(circle at 50% 50%, #d97706 0%, #030712 100%)';
+        glow.style.boxShadow = '0 30px 70px -15px rgba(217, 119, 6, 0.35)';
+        tag.innerText = 'MARS SNACKING • M&M\'S';
+        heading.innerText = 'COLORFUL KINETIC ENERGY';
+        sub.innerText = 'Dynamic candy 3D motion, multi-screen retail displays, and social OLV.';
+      } else if (brand === 'pedigree') {
+        canvas.style.background = 'radial-gradient(circle at 50% 50%, #ca8a04 0%, #030712 100%)';
+        glow.style.boxShadow = '0 30px 70px -15px rgba(202, 138, 4, 0.35)';
+        tag.innerText = 'MARS PETCARE • PEDIGREE';
+        heading.innerText = 'CANINE IN ACTION';
+        sub.innerText = 'Dynamic animal motion, brand asset audits, and high-impact roadside LED billboards.';
+      } else if (brand === 'snickers') {
+        canvas.style.background = 'radial-gradient(circle at 50% 50%, #1d4ed8 0%, #020617 100%)';
+        glow.style.boxShadow = '0 30px 70px -15px rgba(29, 78, 216, 0.35)';
+        tag.innerText = 'MARS SNACKING • SNICKERS';
+        heading.innerText = 'HIGH-VOLTAGE HUNGER';
+        sub.innerText = 'Bold kinetic typography, fast-cut video commercials, and multi-market adaptations.';
+      } else if (brand === 'whiskas') {
+        canvas.style.background = 'radial-gradient(circle at 50% 50%, #7e22ce 0%, #030712 100%)';
+        glow.style.boxShadow = '0 30px 70px -15px rgba(126, 34, 206, 0.35)';
+        tag.innerText = 'MARS PETCARE • WHISKAS';
+        heading.innerText = 'FELINE CURIOSITY';
+        sub.innerText = 'Vibrant purple digital signage, safe-zone verification, and broadcast asset delivery.';
       }
     }
   </style>
