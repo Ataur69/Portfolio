@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ata ur Rehman | Senior Digital, Graphic & Motion Designer</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%231652f0'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='800' font-size='48'>AR</text></svg>" />
   
-  <!-- Fonts -->
+  <!-- Fontshare: Melodrama by Indian Type Foundry -->
+  <link href="https://api.fontshare.com/v2/css?f[]=melodrama@300,400,500,600,700&display=swap" rel="stylesheet" />
+
+  <!-- Google Fonts: Space Grotesk & Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -74,12 +76,7 @@
       transform: rotate(-3deg);
     }
 
-    /* Navigation Bar */
-    /* Apple Liquid Glass Navigation Bar */
-  /* Apple iOS UI Frosted Navigation Bar */
-    /* Apple Clear Water Glass Navigation Bar */
-    /* Ultra-Clear Transparent Glass Navigation Bar */
-   /* Apple Liquid Refractive Glass Navigation Bar */
+    /* Apple iOS UI Frosted Navigation Bar */
     header {
       position: sticky;
       top: 1rem;
@@ -89,71 +86,23 @@
 
     nav {
       position: relative;
-      /* Clear liquid core: 95% transparent in center, subtly denser near edges */
-      background: radial-gradient(
-        ellipse at 50% 50%,
-        rgba(255, 255, 255, 0.04) 0%,
-        rgba(255, 255, 255, 0.16) 100%
-      );
-      
-      /* Light, crisp optical lens (keeps items clear, not blurry fog) */
-      backdrop-filter: blur(3.5px) saturate(150%);
-      -webkit-backdrop-filter: blur(3.5px) saturate(150%);
-      
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-radius: var(--radius-pill);
       padding: 0.65rem 1.6rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      
-      /* Multi-Depth Liquid Meniscus: Bends light around the curved perimeter */
+      border: 1px solid rgba(255, 255, 255, 0.65);
       box-shadow: 
-        0 8px 32px -4px rgba(0, 0, 0, 0.06),
-        0 0 0 1px rgba(255, 255, 255, 0.4),
-        inset 0 2px 2px 0 rgba(255, 255, 255, 0.95),        /* Sharp top specular ridge */
-        inset 0 0 14px 2px rgba(255, 255, 255, 0.5),       /* Refractive edge glow */
-        inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08),            /* Bottom meniscus shadow */
-        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.4);
-      
-      overflow: hidden;
+        0 4px 20px -2px rgba(0, 0, 0, 0.05),
+        0 1px 3px 0 rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
     }
 
-    /* Convex Liquid Lens (Curved Meniscus Refraction) */
-    nav::before {
-      content: '';
-      position: absolute;
-      inset: 1px;
-      border-radius: inherit;
-      background: radial-gradient(
-        ellipse at 50% 0%,
-        rgba(255, 255, 255, 0.35) 0%,
-        transparent 70%
-      );
-      pointer-events: none;
-    }
-
-    /* Beveled Prism Perimeter: Bends and catches passing colors */
-    nav::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 2px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.85) 0%,
-        rgba(255, 255, 255, 0.15) 35%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.25) 70%,
-        rgba(255, 255, 255, 0.75) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
     .logo {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: -0.5px;
@@ -225,9 +174,9 @@
       transform: translateY(-2px);
     }
 
-    /* Hero Section (Shifted up with balanced rhythm) */
+    /* Hero Section */
     .hero {
-      padding: 4.5rem 0 2.25rem;
+      padding: 4.5rem 0 2.5rem;
       text-align: center;
       position: relative;
     }
@@ -266,7 +215,7 @@
     }
 
     .hero-subtitle {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--cobalt-blue);
       margin-bottom: 1rem;
@@ -287,14 +236,120 @@
       flex-wrap: wrap;
     }
 
+    /* Open Editorial MARS Spotlight Section */
+    .mars-spotlight-section {
+      padding: 4rem 0 3rem;
+      border-top: 2px solid var(--border-light);
+      margin-top: 3.5rem;
+    }
+
+    .mars-editorial-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .mars-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .mars-editorial-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .mars-multiply {
+      color: var(--cobalt-blue);
+      font-weight: 300;
+    }
+
+    .mars-editorial-subtitle {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--cobalt-blue);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.2px;
+    }
+
+    .mars-editorial-statement {
+      font-size: 1.12rem;
+      color: var(--text-dark);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .mars-audit-callout {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-left: 4px solid var(--cobalt-blue);
+      border-top: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mars-callout-icon {
+      font-size: 1.3rem;
+      color: var(--cobalt-blue);
+      line-height: 1;
+      margin-top: 0.15rem;
+    }
+
+    .mars-callout-text {
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .mars-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .mars-spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .mars-spec-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .mars-spec-val {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
     /* About / Bio Module */
-    /* About / Bio Module (Always 100% Visible on Desktop & Mobile) */
     .bio-module {
       background: #ffffff;
       border: 1px solid var(--border-light);
       border-radius: var(--radius-lg);
       padding: 3rem 2.5rem;
-      margin: 2.5rem 0 5rem;
+      margin: 3.5rem 0 5rem;
       box-shadow: var(--shadow-card);
       display: grid;
       grid-template-columns: 1.3fr 0.9fr;
@@ -316,6 +371,34 @@
       color: var(--text-muted);
       font-size: 1rem;
       margin-bottom: 1.5rem;
+    }
+
+    .tool-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+
+    .tool-chip {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: default;
+      user-select: none;
+    }
+
+    .tool-chip::before {
+      content: '•';
+      color: var(--cobalt-blue);
+      font-size: 1.1rem;
+      line-height: 0;
     }
 
     .polaroid-card {
@@ -397,11 +480,11 @@
     }
 
     .case-card.reverse .case-content {
-      order: 2;
+      order: 1;
     }
 
     .case-card.reverse .case-media {
-      order: 1;
+      order: 2;
     }
 
     .case-number {
@@ -478,7 +561,7 @@
       background: radial-gradient(circle at 50% 50%, #ffffff 0%, #e2e8f0 100%);
     }
 
-    /* Experience & Stack */
+    /* Experience & Creative Stack */
     .experience-section {
       padding: 5rem 0;
       border-top: 2px solid var(--border-light);
@@ -540,35 +623,6 @@
       color: var(--text-muted);
     }
 
-    /* Informational Skill Chips in About Section */
-    .tool-chips-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.25rem;
-    }
-
-    .tool-chip {
-      background: #f1f5f9;
-      color: #334155;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.35rem 0.85rem;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      cursor: default;
-      user-select: none;
-    }
-
-    .tool-chip::before {
-      content: '•';
-      color: var(--cobalt-blue);
-      font-size: 1.1rem;
-      line-height: 0;
-    }
-
     /* Structured Numbered Index for Core Disciplines */
     .discipline-index {
       display: flex;
@@ -600,6 +654,7 @@
       letter-spacing: 0.05em;
       min-width: 24px;
     }
+
     /* Contact / CTA Card */
     .cta-card {
       background: #ffffff;
@@ -695,39 +750,27 @@
         padding: 0 0.5rem;
       }
 
-      /* Bio / About Card */
-      /* Mobile Hero: Tightens height so it doesn't leave an empty void */
       .hero {
-        padding: 1.75rem 0 1rem !important;
-      }
-      .hero h1 {
-        margin: 0.5rem 0 1rem !important;
-        font-size: clamp(2.4rem, 11vw, 3.6rem) !important;
-      }
-      .hero-desc {
-        margin: 0 auto 1.5rem !important;
-        font-size: 0.95rem !important;
+        padding: 2.25rem 0 1rem !important;
       }
 
-      /* About Card: Immediately visible on mobile (no invisible ghost state) */
+      /* Open MARS Spotlight Mobile */
+      .mars-spotlight-section {
+        padding: 2.5rem 0 2rem;
+        margin-top: 2rem;
+      }
+      .mars-spec-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+
+      /* Bio / About Card */
       .bio-module { 
         grid-template-columns: 1fr; 
-        padding: 1.75rem 1.25rem; 
-        margin: 1.5rem 0 3.5rem !important;
+        padding: 2rem 1.25rem; 
+        margin: 2rem 0 3.5rem !important;
         opacity: 1 !important;
         transform: none !important;
-      }
-      .bio-right { 
-        order: -1; 
-        display: flex; 
-        justify-content: center; 
-        margin-bottom: 1.5rem; 
-      }
-      .polaroid-card { 
-        max-width: 320px; 
-        width: 100%; 
-        transform: rotate(1.5deg);
-        margin-bottom: 2rem;
       }
       .bio-right { 
         order: -1; 
@@ -799,6 +842,7 @@
       <nav>
         <div class="logo">ATA UR REHMAN<span>.</span></div>
         <ul class="nav-links">
+          <li><a href="#mars">MARS Spotlight</a></li>
           <li><a href="#work">Case Studies</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
@@ -819,14 +863,66 @@
 
       <div class="script-text">Welcome to Ata's</div>
       <h1>PORTFOLIO</h1>
-      <div class="hero-subtitle">Senior Digital Designer at Publicis Groupe • 7 Years Experience</div>
+      <div class="hero-subtitle">Senior Digital Designer at Publicis Groupe • 6+ Years Experience</div>
       <p class="hero-desc">
         Crafting high-retention brand campaigns, motion graphics, 3D aesthetics, and digital experiences that captivate attention and drive engagement.
       </p>
 
       <div class="hero-actions">
-        <a href="#work" class="btn-cobalt">EXPLORE CASE STUDIES ↓</a>
+        <a href="#mars" class="btn-cobalt">VIEW MARS LEADERSHIP ↓</a>
         <a href="https://www.linkedin.com/in/ata-ur-rehmandesign/" target="_blank" rel="noopener" class="btn-white">LinkedIn Profile ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flagship Account Spotlight: Publicis Groupe × MARS (Open Editorial Layout) -->
+  <section class="mars-spotlight-section" id="mars">
+    <div class="container">
+      <div class="mars-editorial-wrap">
+        <div class="mars-badge-row">
+          <span class="pill-tag blue">KEY GLOBAL ACCOUNT</span>
+          <span class="script-text" style="font-size: 1.45rem; transform: rotate(-2deg);">Enterprise Creative Leadership</span>
+        </div>
+        
+        <h2 class="mars-editorial-title">
+          PUBLICIS GROUPE <span class="mars-multiply">×</span> MARS
+        </h2>
+        
+        <div class="mars-editorial-subtitle">
+          Senior Digital Designer • Motion, DOOH & OLV Creative Ownership
+        </div>
+
+        <p class="mars-editorial-statement">
+          Directing end-to-end static and kinetic motion creative across global <strong>MARS Snacking</strong> (M&M'S, Snickers, Twix, Skittles, Galaxy) and <strong>MARS Petcare</strong> (Pedigree, Whiskas, Sheba, Royal Canin, IAMS) portfolios. Engineering broadcast-grade Digital Out-of-Home (DOOH) assets, dynamic Online Video (OLV) campaigns, and high-impact social suites for worldwide markets.
+        </p>
+
+        <!-- Proactive Asset Audit & Client Commendation Callout -->
+        <div class="mars-audit-callout">
+          <div class="mars-callout-icon">✦</div>
+          <div class="mars-callout-text">
+            <strong>Strategic Asset Audit Ownership:</strong> Commended directly by client partners for taking full ownership of high-volume master briefs, rigorously stress-testing multi-market asset specs, and proactively resolving critical creative, technical, and brand compliance points during initial audit phases.
+          </div>
+        </div>
+
+        <!-- Minimalist Editorial Spec Grid -->
+        <div class="mars-spec-grid">
+          <div class="mars-spec-item">
+            <span class="mars-spec-label">Divisions</span>
+            <span class="mars-spec-val">Snacking & Petcare</span>
+          </div>
+          <div class="mars-spec-item">
+            <span class="mars-spec-label">Channels</span>
+            <span class="mars-spec-val">DOOH, OLV & Motion</span>
+          </div>
+          <div class="mars-spec-item">
+            <span class="mars-spec-label">Key Brands</span>
+            <span class="mars-spec-val">M&M'S • Snickers • Pedigree • Whiskas</span>
+          </div>
+          <div class="mars-spec-item">
+            <span class="mars-spec-label">Core Scope</span>
+            <span class="mars-spec-val">Static, Motion & Big Brief Audits</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -838,9 +934,10 @@
         <span class="pill-tag blue" style="margin-bottom: 0.75rem; display: inline-block;">ABOUT & VISION</span>
         <h2>Balancing Visual Precision with Emotional Storytelling.</h2>
         <p>
-          Over the past 6+ years, I have navigated the intersection of static brand identities, kinetic motion design, and 3D visual campaigns. From corporate visual communication at Publicis Groupe to interactive educational animations and luxury packaging, my mission is to design work that stops the scroll.
+          Over the past 6+ years, I have navigated the intersection of static brand identities, kinetic motion design, and 3D visual campaigns. From enterprise creative direction at Publicis Groupe to interactive educational animations and luxury packaging, my mission is to design work that stops the scroll.
         </p>
-     <!-- Informational Skill Chips (No Button Confusion) -->
+        
+        <!-- Clean Informational Tool Chips -->
         <div class="tool-chips-wrap">
           <div class="tool-chip">After Effects</div>
           <div class="tool-chip">Cinema 4D</div>
@@ -854,7 +951,7 @@
 
       <div class="bio-right">
         <div class="polaroid-card">
-          <img src="profile.png" alt="Ata ur Rehman" />
+          <img src="profile.jpg" alt="Ata ur Rehman" />
           <div class="polaroid-caption">Ready for new challenges ✦</div>
         </div>
       </div>
@@ -864,54 +961,11 @@
   <!-- Featured Case Studies -->
   <section class="case-studies-section" id="work">
     <div class="container">
-      <!-- Flagship Card: Publicis Groupe × MARS -->
-<div class="case-card" style="border: 2px solid var(--cobalt-blue); box-shadow: 0 16px 36px -10px rgba(22, 82, 240, 0.18);" onclick="openModal('Publicis Groupe × MARS Global Campaign Suite', 'MARS (Snacking & Petcare) via Publicis Groupe', 'DOOH, OLV & Motion Design', 'After Effects, Premiere Pro, Illustrator, Photoshop, Asset Audit QC', 'Led end-to-end static and kinetic motion creative across MARS Snacking and Petcare divisions. Produced high-impact Digital Out-of-Home (DOOH), Online Video (OLV), and multi-market social campaigns. Took full ownership of complex brand briefs and large-scale asset audits, earning direct client recognition for strategic rigor and proactive quality control.')">
-  <div class="case-content">
-    <div class="case-number" style="color: var(--cobalt-blue);">FEATURED ACCOUNT</div>
-    
-    <div class="case-meta">
-      <span class="pill-tag blue">MARS SNACKING & PETCARE</span>
-      <span class="pill-tag">DOOH & OLV</span>
-      <span class="pill-tag">PUBLICIS GROUPE</span>
-    </div>
-
-    <h3 class="case-title" style="font-size: 2.1rem; margin-bottom: 0.5rem;">
-      Publicis Groupe × MARS
-    </h3>
-
-    <div style="font-size: 0.95rem; font-weight: 700; color: var(--cobalt-blue); margin-bottom: 1rem;">
-      Senior Digital Designer • Creative Lead & Asset Audit Ownership
-    </div>
-
-    <p class="case-desc" style="font-size: 1.02rem; line-height: 1.6; margin-bottom: 1.25rem;">
-      Directing static and kinetic motion assets for global MARS portfolios across Snacking and Petcare. Delivering broadcast-ready DOOH (Digital Out-of-Home), Online Video (OLV), and dynamic social ad suites for worldwide brand campaigns.
-    </p>
-
-    <!-- Client Appreciation & Audit Ownership Highlight Box -->
-    <div style="background: #f8fafc; border-left: 3px solid var(--cobalt-blue); padding: 0.85rem 1.1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #334155;">
-      <strong>Strategic Asset Auditing:</strong> Commended directly by client partners for taking full ownership of high-volume master briefs, rigorously stress-testing asset specs, and proactively catching critical creative issues during initial audit phases.
-    </div>
-
-    <!-- Recognizable Brands Sub-Pills -->
-    <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.5rem;">
-      <span style="font-size: 0.78rem; font-weight: 700; background: #f1f5f9; padding: 0.3rem 0.75rem; border-radius: 4px; color: #475569;">M&M'S</span>
-      <span style="font-size: 0.78rem; font-weight: 700; background: #f1f5f9; padding: 0.3rem 0.75rem; border-radius: 4px; color: #475569;">SNICKERS</span>
-      <span style="font-size: 0.78rem; font-weight: 700; background: #f1f5f9; padding: 0.3rem 0.75rem; border-radius: 4px; color: #475569;">PEDIGREE</span>
-      <span style="font-size: 0.78rem; font-weight: 700; background: #f1f5f9; padding: 0.3rem 0.75rem; border-radius: 4px; color: #475569;">WHISKAS</span>
-      <span style="font-size: 0.78rem; font-weight: 700; background: #f1f5f9; padding: 0.3rem 0.75rem; border-radius: 4px; color: #475569;">GALAXY</span>
-      <span style="font-size: 0.78rem; font-weight: 700; background: #f1f5f9; padding: 0.3rem 0.75rem; border-radius: 4px; color: #475569;">SHEBA</span>
-    </div>
-
-    <button class="btn-cobalt">EXPLORE MARS CAMPAIGN WORK ↗</button>
-  </div>
-
-  <div class="case-media">
-    <div class="case-media-box" style="background: radial-gradient(circle at 50% 50%, #ffffff 0%, #dbeafe 100%); flex-direction: column; gap: 0.75rem;">
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--cobalt-blue);">MARS</div>
-      <div style="font-size: 0.85rem; font-weight: 700; color: #475569; letter-spacing: 0.05em;">DOOH • OLV • MOTION • AUDIT</div>
-    </div>
-  </div>
-</div>
+      <div class="section-title-wrap">
+        <div>
+          <span class="script-text">Selected Works</span>
+          <h2>FEATURED CASE STUDIES</h2>
+        </div>
         
         <!-- 2-Line Proportional Badge -->
         <div class="pill-tag blue" style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.45rem 0.9rem; border-radius: 12px; line-height: 1.25; width: fit-content; flex-shrink: 0;">
@@ -1041,7 +1095,7 @@
               <div class="timeline-date">Nov 2025 – Present</div>
               <div class="timeline-role">Senior Digital Designer</div>
               <div class="timeline-company">Publicis Groupe</div>
-              <div class="timeline-desc">Delivering dynamic digital advertising, digital out-of-home (DOOH) assets, high-impact marketing collateral, and visual storytelling for leading international agency accounts.</div>
+              <div class="timeline-desc">Directing dynamic digital advertising, digital out-of-home (DOOH) assets, high-impact marketing collateral, and visual storytelling for leading international agency accounts.</div>
             </div>
 
             <div class="timeline-card">
@@ -1163,7 +1217,6 @@
       }
 
       .case-card.is-settled, 
-      .bio-module.is-settled, 
       .timeline-card.is-settled, 
       .cta-card.is-settled {
         opacity: 1;
