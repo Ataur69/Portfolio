@@ -73,6 +73,7 @@
 
     /* Apple iOS UI Frosted Nav Bar */
     /* Apple Liquid Water Glass Navigation Bar */
+    /* Animated Apple Liquid Water Glass Navigation Bar */
     header {
       position: sticky;
       top: 1rem;
@@ -82,16 +83,16 @@
 
     nav {
       position: relative;
-      /* 90%+ Transparent Water Core: Grid lines and text are clearly visible */
+      /* 92% Transparent Clear Water Center */
       background: radial-gradient(
         ellipse at 50% 50%,
-        rgba(255, 255, 255, 0.04) 0%,
-        rgba(255, 255, 255, 0.14) 100%
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.15) 100%
       );
       
-      /* Crisp 3.5px Optical Lens: Doesn't turn objects into a blurry fog */
-      backdrop-filter: blur(3.5px) saturate(150%);
-      -webkit-backdrop-filter: blur(3.5px) saturate(150%);
+      /* Optical Water Lens */
+      backdrop-filter: blur(3.5px) saturate(160%);
+      -webkit-backdrop-filter: blur(3.5px) saturate(160%);
       
       border-radius: var(--radius-pill);
       padding: 0.65rem 1.6rem;
@@ -99,18 +100,59 @@
       justify-content: space-between;
       align-items: center;
       
-      /* Liquid Meniscus Ripple & Optical Bending Rims */
+      /* Multi-Layered Liquid Meniscus Rims */
       box-shadow: 
         0 8px 32px -4px rgba(0, 0, 0, 0.06),
-        0 0 0 1px rgba(255, 255, 255, 0.45),
-        inset 0 2px 2px 0 rgba(255, 255, 255, 0.95),        /* Top specular water ridge */
-        inset 0 0 14px 2px rgba(255, 255, 255, 0.5),       /* Liquid edge refraction */
-        inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08),            /* Bottom meniscus shadow */
-        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.4);
+        0 0 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 2px 3px 0 rgba(255, 255, 255, 0.95),        /* Top water surface tension */
+        inset 0 0 12px 2px rgba(255, 255, 255, 0.5),       /* Deep perimeter water glow */
+        inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08);
       
       overflow: hidden;
     }
 
+    /* Moving Liquid Ripple Caustic along the Edge */
+    nav::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2.5px; /* Water Rim Thickness */
+      
+      /* Continuous Fluid Wave Gradient */
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(147, 197, 253, 0.85) 25%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(192, 132, 252, 0.75) 75%,
+        rgba(255, 255, 255, 0.95) 100%
+      );
+      background-size: 300% 300%;
+      animation: liquidRippleWave 6s ease-in-out infinite;
+      
+      /* Mask out center so only the 2.5px curved water rim ripples */
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Keyframes: Courses fluid light around the capsule border */
+    @keyframes liquidRippleWave {
+      0% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+      }
+      50% {
+        background-position: 100% 50%;
+        filter: drop-shadow(0 0 6px rgba(147, 197, 253, 0.9));
+      }
+      100% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+      }
+    }
     /* Convex Curved Water Lens */
     nav::before {
       content: '';
