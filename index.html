@@ -878,54 +878,125 @@
   </section>
 
   <!-- Flagship Account Spotlight: Publicis Groupe × MARS (Open Editorial Layout) -->
+  <!-- High-Visual Agency Showcase: Publicis Groupe × MARS -->
   <section class="mars-spotlight-section" id="mars">
     <div class="container">
-      <div class="mars-editorial-wrap">
-        <div class="mars-badge-row">
-          <span class="pill-tag blue">KEY GLOBAL ACCOUNT</span>
-          <span class="script-text" style="font-size: 1.45rem; transform: rotate(-2deg);">Enterprise Creative Leadership</span>
+      
+      <!-- Top Editorial Headline -->
+      <div class="mars-top-header">
+        <div class="mars-eyebrow">
+          <span class="mars-live-dot"></span>
+          ENTERPRISE ACCOUNT SPOTLIGHT • PUBLICIS GROUPE
         </div>
-        
-        <h2 class="mars-editorial-title">
-          PUBLICIS GROUPE <span class="mars-multiply">×</span> MARS
+        <h2 class="mars-hero-title">
+          MARS GLOBAL CAMPAIGNS
         </h2>
-        
-        <div class="mars-editorial-subtitle">
-          Senior Digital Designer • Motion, DOOH & OLV Creative Ownership
-        </div>
-
-        <p class="mars-editorial-statement">
-          Directing end-to-end static and kinetic motion creative across global <strong>MARS Snacking</strong> (M&M'S, Snickers, Twix, Skittles, Galaxy) and <strong>MARS Petcare</strong> (Pedigree, Whiskas, Sheba, Royal Canin, IAMS) portfolios. Engineering broadcast-grade Digital Out-of-Home (DOOH) assets, dynamic Online Video (OLV) campaigns, and high-impact social suites for worldwide markets.
+        <p class="mars-sub-lead">
+          Directing static, kinetic motion, and broadcast-scale <strong>DOOH & OLV</strong> across global Snacking & Petcare portfolios.
         </p>
 
-        <!-- Proactive Asset Audit & Client Commendation Callout -->
-        <div class="mars-audit-callout">
-          <div class="mars-callout-icon">✦</div>
-          <div class="mars-callout-text">
-            <strong>Strategic Asset Audit Ownership:</strong> Commended directly by client partners for taking full ownership of high-volume master briefs, rigorously stress-testing multi-market asset specs, and proactively resolving critical creative, technical, and brand compliance points during initial audit phases.
+        <!-- Brand Filter Pills (Changes Billboard Visuals on Click) -->
+        <div class="mars-brand-switcher">
+          <button class="m-pill-btn active" onclick="setMarsVisual('mms', this)">
+            <span class="m-dot mms-dot"></span> M&M'S (Snacking)
+          </button>
+          <button class="m-pill-btn" onclick="setMarsVisual('pedigree', this)">
+            <span class="m-dot pedigree-dot"></span> PEDIGREE (Petcare)
+          </button>
+          <button class="m-pill-btn" onclick="setMarsVisual('snickers', this)">
+            <span class="m-dot snickers-dot"></span> SNICKERS (Snacking)
+          </button>
+          <button class="m-pill-btn" onclick="setMarsVisual('whiskas', this)">
+            <span class="m-dot whiskas-dot"></span> WHISKAS (Petcare)
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Visual Stage: 3D DOOH Billboard & Technical Audit Console -->
+      <div class="mars-stage-grid">
+        
+        <!-- The Urban DOOH Screen (Realistic Billboard Mockup) -->
+        <div class="billboard-container" id="billboardGlow">
+          <div class="billboard-frame">
+            
+            <!-- Screen Top Header HUD -->
+            <div class="screen-hud-bar">
+              <div class="hud-left">
+                <span class="rec-dot"></span> REC • DOOH SIMULATION
+              </div>
+              <div class="hud-right">
+                4K UHD • 60 FPS • SAFE-ZONE COMPLIANT
+              </div>
+            </div>
+
+            <!-- Dynamic Artwork Canvas -->
+            <div class="billboard-canvas" id="billboardCanvas">
+              
+              <!-- Safe-Zone Inspection Overlay -->
+              <div class="safe-zone-box">
+                <span class="sz-tag top-left">SAFE AREA [80%]</span>
+                <span class="sz-tag bottom-right">AUDIT VERIFIED ✓</span>
+              </div>
+
+              <!-- Live Visual Content -->
+              <div class="billboard-visual-content">
+                <div class="screen-brand-tag" id="screenTag">MARS SNACKING</div>
+                <h3 class="screen-kinetic-heading" id="screenHeading">UNSTOPPABLE MOTION</h3>
+                <p class="screen-sub-text" id="screenSubText">Multi-Market Digital Out-Of-Home & High-Impact Online Video</p>
+                
+                <div class="screen-tags-row">
+                  <span class="screen-tag">DOOH BILLBOARD</span>
+                  <span class="screen-tag">9:16 & 16:9 MASTER</span>
+                  <span class="screen-tag">KINETIC TYPE</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Billboard Hardware Footer (Speaker / LED Mount) -->
+            <div class="billboard-footer">
+              <span class="bb-brand">PUBLICIS GROUPE × MARS ASSET PORTAL</span>
+              <span class="bb-status">COLOR PROFILE: DCI-P3 CALIBRATED</span>
+            </div>
+
           </div>
         </div>
 
-        <!-- Minimalist Editorial Spec Grid -->
-        <div class="mars-spec-grid">
-          <div class="mars-spec-item">
-            <span class="mars-spec-label">Divisions</span>
-            <span class="mars-spec-val">Snacking & Petcare</span>
+        <!-- Right Side: Key Pillars & Client Recognition Seal -->
+        <div class="mars-pillars-col">
+          
+          <!-- Key Scope Visual Cards -->
+          <div class="mars-pillar-card">
+            <div class="pillar-num">01</div>
+            <div>
+              <h4>Broadcast DOOH & Mega Screens</h4>
+              <p>Engineering large-format motion graphics for urban LED towers and highway digital billboards with pixel-perfect safe-zone scaling.</p>
+            </div>
           </div>
-          <div class="mars-spec-item">
-            <span class="mars-spec-label">Channels</span>
-            <span class="mars-spec-val">DOOH, OLV & Motion</span>
+
+          <div class="mars-pillar-card">
+            <div class="pillar-num">02</div>
+            <div>
+              <h4>Online Video (OLV) & Social Motion</h4>
+              <p>Designing high-energy commercial cutdowns, kinetic typography, and multi-ratio ad suites (9:16, 1:1, 16:9) optimized for viewer retention.</p>
+            </div>
           </div>
-          <div class="mars-spec-item">
-            <span class="mars-spec-label">Key Brands</span>
-            <span class="mars-spec-val">M&M'S • Snickers • Pedigree • Whiskas</span>
+
+          <!-- Official Client Commendation Certificate -->
+          <div class="mars-commendation-badge">
+            <div class="badge-ribbon">✦ VERIFIED CLIENT PRAISE</div>
+            <h4 style="font-size: 1.1rem; font-weight: 800; color: #1e3a8a; margin-bottom: 0.5rem;">
+              Full Brief Ownership & Asset Audit Leadership
+            </h4>
+            <p style="font-size: 0.92rem; color: #334155; line-height: 1.6;">
+              <em>"Recognized directly by MARS client teams for taking total ownership of large-scale briefs, stress-testing asset technicalities, and raising vital strategic points during asset audits that protected brand guidelines across multiple global markets."</em>
+            </p>
           </div>
-          <div class="mars-spec-item">
-            <span class="mars-spec-label">Core Scope</span>
-            <span class="mars-spec-val">Static, Motion & Big Brief Audits</span>
-          </div>
+
         </div>
+
       </div>
+
     </div>
   </section>
 
