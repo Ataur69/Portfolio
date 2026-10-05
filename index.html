@@ -74,6 +74,7 @@
     /* Apple iOS UI Frosted Nav Bar */
     /* Apple Liquid Water Glass Navigation Bar */
     /* Animated Apple Liquid Water Glass Navigation Bar */
+   /* Pure Liquid Water Navigation Bar (No White Stroke) */
     header {
       position: sticky;
       top: 1rem;
@@ -83,16 +84,12 @@
 
     nav {
       position: relative;
-      /* 92% Transparent Clear Water Center */
-      background: radial-gradient(
-        ellipse at 50% 50%,
-        rgba(255, 255, 255, 0.05) 0%,
-        rgba(255, 255, 255, 0.15) 100%
-      );
+      /* 95% Transparent Liquid Core (Zero white paint/film) */
+      background: rgba(255, 255, 255, 0.04);
       
-      /* Optical Water Lens */
-      backdrop-filter: blur(3.5px) saturate(160%);
-      -webkit-backdrop-filter: blur(3.5px) saturate(160%);
+      /* Liquid Ripple Displacement Filter + Subtle Crisp Lens */
+      backdrop-filter: url(#water-ripple) blur(3px) saturate(160%);
+      -webkit-backdrop-filter: blur(3px) saturate(160%);
       
       border-radius: var(--radius-pill);
       padding: 0.65rem 1.6rem;
@@ -100,58 +97,14 @@
       justify-content: space-between;
       align-items: center;
       
-      /* Multi-Layered Liquid Meniscus Rims */
+      /* Pure Liquid Edge: Barely-there translucent hairline + realistic water drop shadow */
+      border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 
-        0 8px 32px -4px rgba(0, 0, 0, 0.06),
-        0 0 0 1px rgba(255, 255, 255, 0.4),
-        inset 0 2px 3px 0 rgba(255, 255, 255, 0.95),        /* Top water surface tension */
-        inset 0 0 12px 2px rgba(255, 255, 255, 0.5),       /* Deep perimeter water glow */
-        inset 0 -2px 3px 0 rgba(0, 0, 0, 0.08);
+        0 12px 32px -4px rgba(0, 0, 0, 0.08),
+        0 2px 8px -1px rgba(0, 0, 0, 0.04),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.45); /* Delicate top light reflection only */
       
       overflow: hidden;
-    }
-
-    /* Moving Liquid Ripple Caustic along the Edge */
-    nav::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 2.5px; /* Water Rim Thickness */
-      
-      /* Continuous Fluid Wave Gradient */
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(147, 197, 253, 0.85) 25%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(192, 132, 252, 0.75) 75%,
-        rgba(255, 255, 255, 0.95) 100%
-      );
-      background-size: 300% 300%;
-      animation: liquidRippleWave 6s ease-in-out infinite;
-      
-      /* Mask out center so only the 2.5px curved water rim ripples */
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    /* Keyframes: Courses fluid light around the capsule border */
-    @keyframes liquidRippleWave {
-      0% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
-      }
-      50% {
-        background-position: 100% 50%;
-        filter: drop-shadow(0 0 6px rgba(147, 197, 253, 0.9));
-      }
-      100% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
-      }
     }
     /* Convex Curved Water Lens */
     nav::before {
@@ -898,21 +851,17 @@
 <body>
 
   <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">ATA UR REHMAN<span>.</span></div>
-        <ul class="nav-links">
-          <li><a href="#mars">MARS Spotlight</a></li>
-          <li><a href="#work">Case Studies</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="https://www.linkedin.com/in/ata-ur-rehmandesign/" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
-        <a href="#contact" class="btn-cobalt">Let's Talk ↗</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Liquid Water Ripple Optical Displacement Filter -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <filter id="water-ripple" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015 0.03" numOctaves="2" result="noise">
+          <animate attributeName="baseFrequency" dur="9s" values="0.015 0.03; 0.025 0.018; 0.015 0.03" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
 
   <!-- Hero Section -->
   <section class="hero">
